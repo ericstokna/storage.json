@@ -1,0 +1,29 @@
+local autoAttack = macro(350, "AUTO ATTACK", function()
+  ignore = {'Emberwing', 'Grovebeast', 'Skullfrost', 'Thundergiant', 'Dog', 'Cat'}
+  if g_game.isAttacking() then
+    return
+  end
+  local player = g_game.getLocalPlayer()
+  local spec = g_map.getSpectators(player:getPosition())
+  function isInArray(tbl, value)
+    for k, v in ipairs(tbl) do
+      if v == value then
+        return k
+      end
+    end
+  return false
+  end
+  for k, monster in pairs(spec) do
+    if not isInArray(ignore, monster:getName()) then
+      local path = findPath(player:getPosition(), monster:getPosition(), 7, {ignoreLastCreature=true, ignoreNonPathable=true, ignoreCost=true})
+      if monster:isMonster() and not monster:isPlayer() and not monster:isNpc() and path then
+        g_game.attack(monster)
+        break
+      end
+    end
+  end
+end)
+
+addIcon("autoAttack", {outfit={mount=0,feet=81,legs=114,body=114,type=430,auxType=0,addons=3,head=114}, hotkey="SPACE", text="AUTOATTACK"}--[[ icon options ]], function(icon, isOn)
+  autoAttack.setOn(isOn)
+end)

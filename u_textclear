@@ -1,0 +1,9 @@
+setDefaultTab("Main")
+macro(100, "Text Clear", function()
+
+  modules.game_textmessage.clearMessages()
+  g_map.cleanTexts()
+
+end)
+
+UI.Separator()

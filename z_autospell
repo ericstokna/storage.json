@@ -1,0 +1,14 @@
+setDefaultTab("Main")
+
+addSeparator()
+
+UI.TextEdit(storage.customSpell or "exori", function(widget, newSpell)
+ storage.customSpell = newSpell
+end)
+
+macro(500, "AUTO SPELL", function()
+if g_game:isAttacking() then
+say(storage.customSpell)
+delay(1000)
+end
+end)

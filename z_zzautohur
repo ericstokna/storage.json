@@ -1,0 +1,31 @@
+setDefaultTab("Main")
+
+addSeparator()
+
+UI.Label("AUTO HUR:")
+
+UI.TextEdit(storage.hasteSpell or "utani hur", function(widget, newText)
+  storage.hasteSpell = newText
+end)
+
+macro(500, "haste", function() 
+  if hasHaste() then return end
+  if TargetBot then 
+    TargetBot.saySpell(storage.hasteSpell) -- sync spell with targetbot if available
+  else
+    say(storage.hasteSpell)
+  end
+end)
+
+UI.TextEdit(storage.antiParalyze or "utani hur", function(widget, newText)
+  storage.antiParalyze = newText
+end)
+
+macro(100, "anti paralyze", function() 
+  if not isParalyzed() then return end
+  if TargetBot then 
+    TargetBot.saySpell(storage.antiParalyze) -- sync spell with targetbot if available
+  else
+    say(storage.antiParalyze)
+  end
+end)

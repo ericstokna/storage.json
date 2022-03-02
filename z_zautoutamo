@@ -3,6 +3,6 @@ setDefaultTab("Main")
 addSeparator()
 
 macro(500, "UTAMO TEMPO", function()
-if player:getSkillLevel(5) >= 100 and player:getSkillLevel(5) <=200 and not isInPz() then
+if player:getSkillLevel(5) >= 100 and player:getSkillLevel(5) <=190 and not isInPz() then
 saySpell("utamo tempo", 200) end
 end)
